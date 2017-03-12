@@ -1,4 +1,14 @@
 import { Component } from '@angular/core';
+import { Hero } from './hero';
+
+// HEROES array is type Hero
+const HEROES: Hero[] = [
+  { id: 1, name: 'Mr Hire'},
+  { id: 2, name: 'Ms Fire'},
+  { id: 3, name: 'Mr Weekend'},
+  { id: 4, name: 'Recruiter'},
+  { id: 5, name: 'Shuffle Man'}
+];
 
 // INTERPOLATION one-way data binding
 @Component({
@@ -13,14 +23,6 @@ import { Component } from '@angular/core';
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
   </ul>
-  <div *ngIf="selectedHero">
-  <h2>{{selectedHero.name}} details!</h2>
-  <div><label>id: </label>{{selectedHero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="selectedHero.name" placeholder="name">
-  </div>
-  </div>
   `,
   styles: [`
   .selected {
@@ -82,17 +84,5 @@ export class AppComponent  {
   }
 }
 
-export class Hero {
-  id: number;
-  name: string;
-}
 
-// HEROES array is type Hero
-const HEROES: Hero[] = [
-  { id: 1, name: 'Mr Hire'},
-  { id: 2, name: 'Ms Fire'},
-  { id: 3, name: 'Mr Weekend'},
-  { id: 4, name: 'Recruiter'},
-  { id: 5, name: 'Shuffle Man'}
-];
 
