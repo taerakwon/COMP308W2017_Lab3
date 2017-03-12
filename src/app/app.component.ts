@@ -7,7 +7,9 @@ import { Component } from '@angular/core';
   <h1>{{title}}</h1>
   <h2>My Heroes</h2>
   <ul class="heroes">
-    <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
+    <li *ngFor="let hero of heroes" 
+      [class.selected]="hero == selectedHero"
+      (click)="onSelect(hero)">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
   </ul>
@@ -23,7 +25,7 @@ import { Component } from '@angular/core';
   styles: [`
   .selected {
     background-color: #CFD8DC !important;
-    color: white;
+    color: white;    
   }
   .heroes {
     margin: 0 0 2em 0;
