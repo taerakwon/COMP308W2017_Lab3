@@ -1,14 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero';
-
-// HEROES array is type Hero
-const HEROES: Hero[] = [
-  { id: 1, name: 'Mr Hire'},
-  { id: 2, name: 'Ms Fire'},
-  { id: 3, name: 'Mr Weekend'},
-  { id: 4, name: 'Recruiter'},
-  { id: 5, name: 'Shuffle Man'}
-];
+import { HeroService } from './hero.service';
 
 // INTERPOLATION one-way data binding
 @Component({
@@ -73,13 +65,25 @@ const HEROES: Hero[] = [
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-`] 
+`],
+  providers: [HeroService]
 })
 
-export class AppComponent  {
+export class AppComponent implements OnInit  {
   title = 'COMP308W2017 - Tour of Heroes'; 
   selectedHero: Hero;
-  heroes = HEROES;
+  heroes: Hero[];
+
+  constructor(private heroService: HeroService) { }
+
+  getHeroes(): void {
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+  }
+
+  ngOnInit(): void {
+    this.getHeroes();
+  }
+  
   onSelect(hero: Hero): void {
   this.selectedHero = hero;
   }
